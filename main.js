@@ -1,5 +1,5 @@
 $(updateView)
 
 function updateView() {
-    alert("Using JQuery")
+    alert("Check It Out: This thing actually works!")
 }
