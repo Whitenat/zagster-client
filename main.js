@@ -1,1 +1,5 @@
-alert("My Program is Alive!")
+$(updateView)
+
+function updateView() {
+    alert("Using JQuery")
+}
