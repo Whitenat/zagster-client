@@ -12,4 +12,8 @@ function updateRideCount(data) {
     $("h2#rideCount").html(numberOfRides)
 }
 
+function updatePerMonth(data) {
+    numberPerMonth = data.count
+}
+
 console.log(updatePerMonth);
