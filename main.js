@@ -15,9 +15,9 @@ var chart = new Chart(ctx, {
         labels: ["total rides"],
         datasets: [{
             label: "Zagster Rides",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: updateRideCount(),
+            backgroundColor: '#3f3f3f',
+            borderColor: '#FC4A1A',
+            data: [],
         }]
     },
 
