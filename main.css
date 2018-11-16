@@ -1,6 +1,9 @@
 body {
     font-family: "HelveticaNeue", "Arial", sans-serif;
+    color: #f5f5f5;
+    background-color: #262626;
   }
   h2 {
-      font-size: 4em
+      font-size: 4em;
+      color: #dcdcdc;
   }
