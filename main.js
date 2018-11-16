@@ -30,6 +30,7 @@ var chart = new Chart(ctx, {
 function updateRideCount(data) {
     numberOfRides = data.count
     $("h2#rideCount").html(numberOfRides)
+     console.log(data)
 }
 
 function updatePerMonth(data) {
