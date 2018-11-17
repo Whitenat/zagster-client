@@ -5,25 +5,6 @@ $(updateView)
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
     $.getJSON(BASE_URL + "/rides/count/per_month", updatePerMonth)
-    var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ["total rides"],
-        datasets: [{
-            label: "Zagster Rides",
-            backgroundColor: '#3f3f3f',
-            borderColor: '#FC4A1A',
-            data: [],
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
 
 }
 
@@ -34,5 +15,24 @@ function updateRideCount(data) {
 }
 
 function updatePerMonth(data) {
-    console.log(data)
+    console.log(data[2016][0])
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+    
+        // The data for our dataset
+        data: {
+            labels: ["total rides"],
+            datasets: [{
+                label: "Zagster Rides",
+                backgroundColor: '#3f3f3f',
+                borderColor: '#FC4A1A',
+                data: [data[2016][0][9],data[2016][1][10],data[2016][2][11]],
+            }]
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
 }
