@@ -2,9 +2,13 @@ const BASE_URL = "https://zagster-service.herokuapp.com"
 
 $(updateView)
 
+const years = []
+
+const months = []
+
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
-    $.getJSON(BASE_URL + "/rides/count/per_month", updatePerMonth)
+    $.getJSON(BASE_URL + "/rides/count/per_month", perYear)
 
 }
 
@@ -12,6 +16,18 @@ function updateRideCount(data) {
     numberOfRides = data.count
     $("h2#rideCount").html(numberOfRides)
      console.log(data)
+}
+
+function perYear() {
+    for (var i = 0; i<=2; ++i){
+        
+    }
+}
+
+function perMonth() {
+    for (var i = 0; i<=11; ++i) {
+
+    }
 }
 
 function updatePerMonth(data) {
