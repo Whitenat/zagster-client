@@ -1,6 +1,7 @@
 const BASE_URL = "https://zagster-service.herokuapp.com"
 
 $(updateView)
+//$(perMonth)
 
 let years = []
 
@@ -22,15 +23,18 @@ function perYear(data) {
     for (var i = 2016; i<=2018; ++i){
         years.push(data[i]);
     }
+    console.log(data)
     console.log(years);
 }
 
-function perMonth(years) {
-    for (var i = 0; i<=11; ++i) {
-        months.push(years[i]);
-    }
-    console.log(months);
-}
+//function perMonth(years) {
+  //  for (var i in years){
+    //    for (var m = 0; m <=11; ++m) {
+      //      months.push(years[m]);
+        //}
+    //}
+    //console.log(months);
+//}
 
 function updatePerMonth(data) {
     console.log(data[2016][0])
