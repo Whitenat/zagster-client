@@ -13,14 +13,14 @@ function updateView() {
 
     $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
     ).then(
-        $.when (perYear
+        $.when (perYear()
         ).then(
-            $.when (perMonthSixteen
+            $.when (perMonthSixteen()
             ).then(
-                $.when (perMonthSeventeen
+                $.when (perMonthSeventeen()
                 ).then(
-                    $.when (perMonthEighteen
-                    ).then(updatePerMonth)
+                    $.when (perMonthEighteen()
+                    ).then(updatePerMonth())
                 )
             )
         )
