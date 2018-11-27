@@ -1,7 +1,7 @@
 const BASE_URL = "https://zagster-service.herokuapp.com"
 
 $(updateView)
-//$(perMonth)
+
 
 let years = []
 
@@ -9,7 +9,13 @@ let months = []
 
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
-    $.getJSON(BASE_URL + "/rides/count/per_month", perYear)
+
+    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear)
+        ).then(perMonth)
+
+    $.when (perMonth
+        ).then(updatePerMonth)
+    
 
 }
 
@@ -27,14 +33,16 @@ function perYear(data) {
     console.log(years);
 }
 
-//function perMonth(years) {
-  //  for (var i in years){
-    //    for (var m = 0; m <=11; ++m) {
-      //      months.push(years[m]);
-        //}
-    //}
-    //console.log(months);
-//}
+/*function perMonth(years) {
+    for (var m = 0; m <=11; ++m) {
+        if (years[m] = undefined){
+            months.push ([0])
+        }
+        else {months.push(years[m]);
+    }
+  }
+  console.log(months);
+}*/
 
 function updatePerMonth(data) {
     console.log(data[2016][0])
@@ -45,7 +53,7 @@ function updatePerMonth(data) {
     
         // The data for our dataset
         data: {
-            labels: ["total rides"],
+            labels: ["total rides per month"],
             datasets: [{
                 label: "Zagster Rides",
                 backgroundColor: '#3f3f3f',
