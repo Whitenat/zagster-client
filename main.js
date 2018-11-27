@@ -10,11 +10,12 @@ let months = []
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
 
-    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear)
-        ).then(perMonth)
-
-    $.when (perMonth
-        ).then(updatePerMonth)
+    $.when ([$.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
+             perYear, 
+             perMonthSixteen, 
+             perMonthSeventeen, 
+             perMonthEighteen
+    ]).then([updatePerMonth])
     
 
 }
@@ -29,23 +30,45 @@ function perYear(data) {
     for (var i = 2016; i<=2018; ++i){
         years.push(data[i]);
     }
-    console.log(data)
+    console.log(years[0][0][9]);
     console.log(years);
 }
 
-/*function perMonth(years) {
-    for (var m = 0; m <=11; ++m) {
-        if (years[m] = undefined){
-            months.push ([0])
-        }
-        else {months.push(years[m]);
-    }
-  }
-  console.log(months);
-}*/
 
-function updatePerMonth(data) {
-    console.log(data[2016][0])
+function perMonthSixteen(years) {
+    for (var i= 0, m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
+        if (years[i][m][y] === undefined) {
+            months.push(0);
+        } else {
+            months.push(years[i][m][y]);
+        }
+    }
+}
+
+function perMonthSeventeen(years) {
+    for (var i= 1, m = 0, y = 1; m <=11, y <= 12; ++m, ++y) {
+        if (years[i][m][y] === undefined) {
+            months.push(0);
+        } else {
+            months.push(years[i][m][y]);
+        }
+  }
+}
+
+function perMonthEighteen(years) {
+    for (var i= 2, m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
+        if (years[i][m][y] === undefined) {
+            months.push(0);
+        } else {
+            months.push(years[i][m][y]);
+        }
+  }
+}
+
+function updatePerMonth(months) {
+
+    console.log(months)
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -53,12 +76,12 @@ function updatePerMonth(data) {
     
         // The data for our dataset
         data: {
-            labels: ["total rides per month"],
+            labels: [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24","25", "26" ],
             datasets: [{
                 label: "Zagster Rides",
                 backgroundColor: '#3f3f3f',
                 borderColor: '#FC4A1A',
-                data: [data[2016][0][9],data[2016][1][10],data[2016][2][11]],
+                data: [months],
             }]
         },
     
