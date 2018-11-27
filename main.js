@@ -10,15 +10,22 @@ let months = []
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
 
-    $.when ([$.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
-             perYear, 
-             perMonthSixteen, 
-             perMonthSeventeen, 
-             perMonthEighteen
-    ]).then([updatePerMonth])
-    
-
+    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
+    ).then(
+        $.when (perYear
+        ).then(
+            $.when (perMonthSixteen
+            ).then(
+                $.when (perMonthSeventeen
+                ).then(
+                    $.when (perMonthEighteen
+                    ).then(updatePerMonth)
+                )
+            )
+        )
+    )
 }
+
 
 function updateRideCount(data) {
     numberOfRides = data.count
