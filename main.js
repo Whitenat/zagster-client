@@ -150,7 +150,7 @@ function perMonthsDrake() {
 }
 
 function perMonthsG5() {
-    for (var m = 0, y = 9; m <=9, y <= 18; ++m, ++y) {
+    for (var m = 0, y = 9; m <=8, y <= 17; ++m, ++y) {
         if (yearsG5[0] === 0){
             monthsG5.push(0);
         } else {
