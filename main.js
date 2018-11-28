@@ -62,7 +62,7 @@ function updatePerMonth() {
         data: {
             labels: [ "9/16", "10/16", "11/16", "12/16", "1/17", "2/17", "3/17", "4/17", "5/17", "6/17", "7/17", "8/17", "9/17", "10/17", "11/17", "12/17", "1/18", "2/18", "3/18", "4/18", "5/18", "6/18", "7/18", "8/18","9/18", "10/18" ],
             datasets: [{
-                label: "Zagster Rides",
+                label: "Zagster Rides Per Month",
                 backgroundColor: '#3f3f3f',
                 borderColor: '#FC4A1A',
                 data: months,
