@@ -15,7 +15,7 @@ function updateView() {
     ).then(perMonth);
 
     $.when (perMonth
-        ).then(updatePerMonth);
+    ).then(updatePerMonth);
 }
 
 //Displays total number of rides
@@ -34,7 +34,7 @@ function perYear(data) {
     console.log(years);
 }
 
-//pulls the rides per month in 2016 and pushes it into the months array
+//pulls the rides per month and pushes it into the months array
 function perMonth() {
     for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
             months.push(years[0][m][y]);

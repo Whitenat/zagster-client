@@ -9,7 +9,7 @@ h1{
 }
 
 h2 {
-    font-size: 4em;
+    font-size: 2em;
     color: #dcdcdc;
     text-align: center;
 }
@@ -19,8 +19,8 @@ p {
 }
 
 .chartContainer {
-    height: 50%;
-    width: 50%;
+    height: 75%;
+    width: 75%;
     float: center;
     margin: auto;
     border:3px solid #FC4A1A;
