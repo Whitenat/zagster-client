@@ -13,18 +13,18 @@ function updateView() {
 
     $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
     ).then(
-        $.when (perYear()
+        $.when (perYear
         ).then(
-            $.when (perMonthSixteen()
+            $.when (perMonthSixteen
             ).then(
-                $.when (perMonthSeventeen()
+                $.when (perMonthSeventeen
                 ).then(
-                    $.when (perMonthEighteen()
-                    ).then(updatePerMonth())
+                    $.when (perMonthEighteen
+                    ).then(updatePerMonth)
                 )
             )
         )
-    )
+    );
 }
 
 //Displays total number of rides
@@ -36,7 +36,7 @@ function updateRideCount(data) {
 
 //Puts all of the data into the years array
 function perYear(data) {
-    for (var i = 2016; i<=2018; ++i){
+    for (var i = 2016; i <= 2018; ++i){
         years.push(data[i]);
     }
     console.log(years[0][0][9]);
@@ -52,6 +52,7 @@ function perMonthSixteen(years) {
             months.push(years[i][m][y]);
         }
     }
+    console.log(months);
 }
 
 //Pulls the rides per month in 2017 and pushes it into the months array
@@ -62,7 +63,7 @@ function perMonthSeventeen(years) {
         } else {
             months.push(years[i][m][y]);
         }
-  }
+    }
 }
 
 //Pulls the rides per month in 2018 and pushes it into the months array
@@ -73,7 +74,7 @@ function perMonthEighteen(years) {
         } else {
             months.push(years[i][m][y]);
         }
-  }
+    }
 }
 
 //Creates the graph and displays the data from the months array
@@ -93,7 +94,7 @@ function updatePerMonth(months) {
                 label: "Zagster Rides",
                 backgroundColor: '#3f3f3f',
                 borderColor: '#FC4A1A',
-                data: [months],
+                data: months,
             }]
         },
     
@@ -101,3 +102,4 @@ function updatePerMonth(months) {
         options: {}
     });
 }
+ 
