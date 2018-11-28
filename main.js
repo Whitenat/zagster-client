@@ -12,19 +12,10 @@ function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
 
     $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
-    ).then(
-        $.when (perYear
-        ).then(
-            $.when (perMonthSixteen
-            ).then(
-                $.when (perMonthSeventeen
-                ).then(
-                    $.when (perMonthEighteen
-                    ).then(updatePerMonth)
-                )
-            )
-        )
-    );
+    ).then(perMonth);
+
+    $.when (perMonth
+        ).then(updatePerMonth);
 }
 
 //Displays total number of rides
@@ -44,41 +35,21 @@ function perYear(data) {
 }
 
 //pulls the rides per month in 2016 and pushes it into the months array
-function perMonthSixteen(years) {
-    for (var i= 0, m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
-        if (years[i][m][y] === undefined) {
-            months.push(0);
-        } else {
-            months.push(years[i][m][y]);
-        }
+function perMonth() {
+    for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
+            months.push(years[0][m][y]);
+    }
+    for (var m = 0, y = 1; m <=11, y <= 12; ++m, ++y) {
+        months.push(years[1][m][y]);
+    }
+    for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
+        months.push(years[2][m][y]);
     }
     console.log(months);
 }
 
-//Pulls the rides per month in 2017 and pushes it into the months array
-function perMonthSeventeen(years) {
-    for (var i= 1, m = 0, y = 1; m <=11, y <= 12; ++m, ++y) {
-        if (years[i][m][y] === undefined) {
-            months.push(0);
-        } else {
-            months.push(years[i][m][y]);
-        }
-    }
-}
-
-//Pulls the rides per month in 2018 and pushes it into the months array
-function perMonthEighteen(years) {
-    for (var i= 2, m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
-        if (years[i][m][y] === undefined) {
-            months.push(0);
-        } else {
-            months.push(years[i][m][y]);
-        }
-    }
-}
-
 //Creates the graph and displays the data from the months array
-function updatePerMonth(months) {
+function updatePerMonth() {
 
     console.log(months)
 
