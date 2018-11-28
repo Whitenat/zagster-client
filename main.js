@@ -19,6 +19,10 @@ let yearsG5 = []
 
 let monthsG5 = []
 
+let yearsGalveston = []
+
+let monthsGalveston = []
+
 //Pulls data from JQUERY request and ensures order of execution
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
@@ -46,6 +50,12 @@ function updateView() {
 
     $.when (perMonthsG5
     ).then(updatePerMonthG5);
+
+    $.when ($.getJSON(BASE_URL + "/rides/count/galveston/per_month", perYearGalveston),
+    ).then(perMonthsGalveston);
+
+    $.when (perMonthsGalveston
+    ).then(updatePerMonthGalveston);
 
 }
 
@@ -97,6 +107,17 @@ function perYearG5(data) {
         }
     }
     console.log(yearsG5);
+}
+
+function perYearGalveston(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if (data[i] === undefined) {
+            yearsGalveston.push(0)
+        } else{
+        yearsGalveston.push(data[i]);
+        }
+    }
+    console.log(yearsGalveston);
 }
 
 //pulls the rides per month and pushes it into the months array
@@ -162,6 +183,26 @@ function perMonthsG5() {
     }
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
             monthsG5.push(yearsG5[2][m][y]);
+    }
+}
+
+function perMonthsGalveston() {
+    for (var m = 0, y = 9; m <=8, y <= 17; ++m, ++y) {
+        if (yearsGalveston[0] === 0){
+            monthsGalveston.push(0);
+        } else {
+            monthsGalveston.push(yearsGalveston[0][m][y]);
+        }
+    }
+    for (var m = 0, y = 1; m <=12, y <= 13; ++m, ++y) {
+        if (yearsGalveston[0] === 0){
+            monthsGalveston.push(0);
+        } else {
+            monthsGalveston.push(yearsGalveston[1][m][y]);
+        }
+    }
+    for (var m = 0, y = 7; m <=3, y <= 10; ++m, ++y) {
+            monthsGalveston.push(yearsGalveston[2][m][y]);
     }
 }
 
@@ -258,6 +299,31 @@ function updatePerMonthG5() {
                 backgroundColor: '#3f3f3f',
                 borderColor: '#FC4A1A',
                 data: monthsG5,
+            }]
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+}
+
+function updatePerMonthGalveston() {
+
+    console.log(monthsGalveston)
+
+    var ctx = document.getElementById('monthlyGalvestonChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+    
+        // The data for our dataset
+        data: {
+            labels: [ "9/16", "10/16", "11/16", "12/16", "1/17", "2/17", "3/17", "4/17", "5/17", "6/17", "7/17", "8/17", "9/17", "10/17", "11/17", "12/17", "1/18", "2/18", "3/18", "4/18", "5/18", "6/18", "7/18", "8/18","9/18", "10/18" ],
+            datasets: [{
+                label: "Zagster Rides Per Month at Galveston",
+                backgroundColor: '#3f3f3f',
+                borderColor: '#FC4A1A',
+                data: monthsGalveston,
             }]
         },
     
