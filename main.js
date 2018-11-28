@@ -23,6 +23,10 @@ let yearsGalveston = []
 
 let monthsGalveston = []
 
+let yearsGrc = []
+
+let monthsGrc = []
+
 //Pulls data from JQUERY request and ensures order of execution
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
@@ -56,6 +60,12 @@ function updateView() {
 
     $.when (perMonthsGalveston
     ).then(updatePerMonthGalveston);
+
+    $.when ($.getJSON(BASE_URL + "/rides/count/grc/per_month", perYearGrc),
+    ).then(perMonthsGrc);
+
+    $.when (perMonthsGrc
+    ).then(updatePerMonthGrc);
 
 }
 
@@ -118,6 +128,17 @@ function perYearGalveston(data) {
         }
     }
     console.log(yearsGalveston);
+}
+
+function perYearGrc(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if (data[i] === undefined) {
+            yearsGrc.push(0)
+        } else{
+        yearsGrc.push(data[i]);
+        }
+    }
+    console.log(yearsGrc);
 }
 
 //pulls the rides per month and pushes it into the months array
@@ -203,6 +224,18 @@ function perMonthsGalveston() {
     }
     for (var m = 0, y = 7; m <=3, y <= 10; ++m, ++y) {
             monthsGalveston.push(yearsGalveston[2][m][y]);
+    }
+}
+
+function perMonthsGrc() {
+    for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
+            monthsGrc.push(yearsGrc[0][m][y]);
+    }
+    for (var m = 0, y = 1; m <=10, y <= 11; ++m, ++y) {
+            monthsGrc.push(yearsGrc[1][m][y]);
+    }
+    for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
+            monthsGrc.push(yearsGrc[2][m][y]);
     }
 }
 
@@ -324,6 +357,31 @@ function updatePerMonthGalveston() {
                 backgroundColor: '#3f3f3f',
                 borderColor: '#FC4A1A',
                 data: monthsGalveston,
+            }]
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+}
+
+function updatePerMonthGrc() {
+
+    console.log(monthsGrc)
+
+    var ctx = document.getElementById('monthlyGrcChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+    
+        // The data for our dataset
+        data: {
+            labels: [ "9/16", "10/16", "11/16", "12/16", "1/17", "2/17", "3/17", "4/17", "5/17", "6/17", "7/17", "8/17", "9/17", "10/17", "11/17", "12/17", "1/18", "2/18", "3/18", "4/18", "5/18", "6/18", "7/18", "8/18","9/18", "10/18" ],
+            datasets: [{
+                label: "Zagster Rides Per Month at GRC",
+                backgroundColor: '#3f3f3f',
+                borderColor: '#FC4A1A',
+                data: monthsGrc,
             }]
         },
     
