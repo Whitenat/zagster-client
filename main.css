@@ -26,6 +26,9 @@ p {
     height: 75%;
     width: 75%;
     float: center;
-    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left:auto;
+    margin-right:auto;
     border:3px solid #FC4A1A;
 }
