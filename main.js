@@ -31,11 +31,11 @@ let monthsGrc = []
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
 
-    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
-    ).then(perMonth);
-
-    $.when (perMonth
+    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear, perMonth), 
     ).then(updatePerMonth);
+
+    /*$.when (perMonth
+    ).then(updatePerMonth);*/
 
     $.when ($.getJSON(BASE_URL + "/rides/count/columbia_simpson/per_month", perYearColumbia),
     ).then(perMonthsColumbia);
