@@ -58,13 +58,11 @@ function updateRideCount(data) {
      console.log(data)
 }
 
-//Puts all of the data into the years array
+//Puts all of the data into the years and then months array
 function perYear(data) {
     for (var i = 2016; i <= 2018; ++i){
         years.push(data[i]);
     }
-    console.log(years[0][0][9]);
-    console.log(years);
     for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
         months.push(years[0][m][y]);
     }
@@ -74,7 +72,6 @@ function perYear(data) {
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
         months.push(years[2][m][y]);
     }
-    console.log(months);
 }
 
 function perYearColumbia(data) {
@@ -125,7 +122,6 @@ function perYearDrake(data) {
             monthsDrake.push(yearsDrake[2][m][y]);
         }
     }
-    console.log(yearsDrake);
 }
 
 function perYearG5(data) {
@@ -149,7 +145,6 @@ function perYearG5(data) {
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
             monthsG5.push(yearsG5[2][m][y]);
     }
-    console.log(yearsG5);
 }
 
 function perYearGalveston(data) {
@@ -177,7 +172,6 @@ function perYearGalveston(data) {
     for (var m = 0, y = 7; m <=3, y <= 10; ++m, ++y) {
             monthsGalveston.push(yearsGalveston[2][m][y]);
     }
-    console.log(yearsGalveston);
 }
 
 function perYearGrc(data) {
@@ -197,13 +191,10 @@ function perYearGrc(data) {
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
         monthsGrc.push(yearsGrc[2][m][y]);
     }
-    console.log(yearsGrc);
 }
 
 //Creates the graph and displays the data from the months array
 function updatePerMonth() {
-
-    console.log(months)
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -228,8 +219,6 @@ function updatePerMonth() {
 
 function updatePerMonthColumbia() {
 
-    console.log(monthsColumbia)
-
     var ctx = document.getElementById('monthlyColumbiaChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -252,8 +241,6 @@ function updatePerMonthColumbia() {
 }
 
 function updatePerMonthDrake() {
-
-    console.log(monthsDrake)
 
     var ctx = document.getElementById('monthlyDrakeChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -278,8 +265,6 @@ function updatePerMonthDrake() {
 
 function updatePerMonthG5() {
 
-    console.log(monthsG5)
-
     var ctx = document.getElementById('monthlyG5Chart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -303,8 +288,6 @@ function updatePerMonthG5() {
 
 function updatePerMonthGalveston() {
 
-    console.log(monthsGalveston)
-
     var ctx = document.getElementById('monthlyGalvestonChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -327,8 +310,6 @@ function updatePerMonthGalveston() {
 }
 
 function updatePerMonthGrc() {
-
-    console.log(monthsGrc)
 
     var ctx = document.getElementById('monthlyGrcChart').getContext('2d');
     var chart = new Chart(ctx, {
