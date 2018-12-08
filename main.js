@@ -31,40 +31,22 @@ let monthsGrc = []
 function updateView() {
     $.getJSON(BASE_URL + "/rides/count", updateRideCount)
 
-    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear, perMonth), 
+    $.when ($.getJSON(BASE_URL + "/rides/count/per_month", perYear), 
     ).then(updatePerMonth);
 
-    /*$.when (perMonth
-    ).then(updatePerMonth);*/
-
     $.when ($.getJSON(BASE_URL + "/rides/count/columbia_simpson/per_month", perYearColumbia),
-    ).then(perMonthsColumbia);
-
-    $.when (perMonthsColumbia
     ).then(updatePerMonthColumbia);
 
     $.when ($.getJSON(BASE_URL + "/rides/count/drake_park/per_month", perYearDrake),
-    ).then(perMonthsDrake);
-
-    $.when (perMonthsDrake
     ).then(updatePerMonthDrake);
 
     $.when ($.getJSON(BASE_URL + "/rides/count/g5/per_month", perYearG5),
-    ).then(perMonthsG5);
-
-    $.when (perMonthsG5
     ).then(updatePerMonthG5);
 
     $.when ($.getJSON(BASE_URL + "/rides/count/galveston/per_month", perYearGalveston),
-    ).then(perMonthsGalveston);
-
-    $.when (perMonthsGalveston
     ).then(updatePerMonthGalveston);
 
     $.when ($.getJSON(BASE_URL + "/rides/count/grc/per_month", perYearGrc),
-    ).then(perMonthsGrc);
-
-    $.when (perMonthsGrc
     ).then(updatePerMonthGrc);
 
 }
@@ -83,68 +65,8 @@ function perYear(data) {
     }
     console.log(years[0][0][9]);
     console.log(years);
-}
-
-function perYearColumbia(data) {
-    for (var i = 2016; i <= 2018; ++i){
-        if(data[i] === undefined) {
-            yearsColumbia.push(0)
-        } else{
-        yearsColumbia.push(data[i]);
-        }
-    }
-    console.log(yearsColumbia[0][0][9]);
-    console.log(yearsColumbia);
-}
-
-function perYearDrake(data) {
-    for (var i = 2016; i <= 2018; ++i){
-        if (data[i] === undefined) {
-            yearsDrake.push(0)
-        } else{
-        yearsDrake.push(data[i]);
-        }
-    }
-    console.log(yearsDrake);
-}
-
-function perYearG5(data) {
-    for (var i = 2016; i <= 2018; ++i){
-        if (data[i] === undefined) {
-            yearsG5.push(0)
-        } else{
-        yearsG5.push(data[i]);
-        }
-    }
-    console.log(yearsG5);
-}
-
-function perYearGalveston(data) {
-    for (var i = 2016; i <= 2018; ++i){
-        if (data[i] === undefined) {
-            yearsGalveston.push(0)
-        } else{
-        yearsGalveston.push(data[i]);
-        }
-    }
-    console.log(yearsGalveston);
-}
-
-function perYearGrc(data) {
-    for (var i = 2016; i <= 2018; ++i){
-        if (data[i] === undefined) {
-            yearsGrc.push(0)
-        } else{
-        yearsGrc.push(data[i]);
-        }
-    }
-    console.log(yearsGrc);
-}
-
-//pulls the rides per month and pushes it into the months array
-function perMonth() {
     for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
-            months.push(years[0][m][y]);
+        months.push(years[0][m][y]);
     }
     for (var m = 0, y = 1; m <=11, y <= 12; ++m, ++y) {
         months.push(years[1][m][y]);
@@ -155,19 +77,33 @@ function perMonth() {
     console.log(months);
 }
 
-function perMonthsColumbia() {
+function perYearColumbia(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if(data[i] === undefined) {
+            yearsColumbia.push(0)
+        } else{
+        yearsColumbia.push(data[i]);
+        }
+    }
     for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
-            monthsColumbia.push(yearsColumbia[0][m][y]);
+        monthsColumbia.push(yearsColumbia[0][m][y]);
     }
     for (var m = 0, y = 2; m <=11, y <= 12; ++m, ++y) {
-            monthsColumbia.push(yearsColumbia[1][m][y]);
+        monthsColumbia.push(yearsColumbia[1][m][y]);
     }
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
-            monthsColumbia.push(yearsColumbia[2][m][y]);
+        monthsColumbia.push(yearsColumbia[2][m][y]);
     }
 }
 
-function perMonthsDrake() {
+function perYearDrake(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if (data[i] === undefined) {
+            yearsDrake.push(0)
+        } else{
+        yearsDrake.push(data[i]);
+        }
+    }
     for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
         if (yearsDrake[0][m] === undefined){
             monthsDrake.push(0);
@@ -189,9 +125,17 @@ function perMonthsDrake() {
             monthsDrake.push(yearsDrake[2][m][y]);
         }
     }
+    console.log(yearsDrake);
 }
 
-function perMonthsG5() {
+function perYearG5(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if (data[i] === undefined) {
+            yearsG5.push(0)
+        } else{
+        yearsG5.push(data[i]);
+        }
+    }
     for (var m = 0, y = 9; m <=8, y <= 17; ++m, ++y) {
         if (yearsG5[0] === 0){
             monthsG5.push(0);
@@ -205,9 +149,17 @@ function perMonthsG5() {
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
             monthsG5.push(yearsG5[2][m][y]);
     }
+    console.log(yearsG5);
 }
 
-function perMonthsGalveston() {
+function perYearGalveston(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if (data[i] === undefined) {
+            yearsGalveston.push(0)
+        } else{
+        yearsGalveston.push(data[i]);
+        }
+    }
     for (var m = 0, y = 9; m <=8, y <= 17; ++m, ++y) {
         if (yearsGalveston[0] === 0){
             monthsGalveston.push(0);
@@ -225,18 +177,27 @@ function perMonthsGalveston() {
     for (var m = 0, y = 7; m <=3, y <= 10; ++m, ++y) {
             monthsGalveston.push(yearsGalveston[2][m][y]);
     }
+    console.log(yearsGalveston);
 }
 
-function perMonthsGrc() {
+function perYearGrc(data) {
+    for (var i = 2016; i <= 2018; ++i){
+        if (data[i] === undefined) {
+            yearsGrc.push(0)
+        } else{
+        yearsGrc.push(data[i]);
+        }
+    }
     for (var m = 0, y = 9; m <=3, y <= 12; ++m, ++y) {
-            monthsGrc.push(yearsGrc[0][m][y]);
+        monthsGrc.push(yearsGrc[0][m][y]);
     }
     for (var m = 0, y = 1; m <=10, y <= 11; ++m, ++y) {
-            monthsGrc.push(yearsGrc[1][m][y]);
+        monthsGrc.push(yearsGrc[1][m][y]);
     }
     for (var m = 0, y = 1; m <=9, y <= 10; ++m, ++y) {
-            monthsGrc.push(yearsGrc[2][m][y]);
+        monthsGrc.push(yearsGrc[2][m][y]);
     }
+    console.log(yearsGrc);
 }
 
 //Creates the graph and displays the data from the months array
